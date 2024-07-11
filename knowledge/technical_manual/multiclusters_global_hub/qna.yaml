@@ -1,0 +1,41 @@
+task_description: 'Teach the model the knowledge of multicluster global hub'
+created_by: MengYan
+domain: cloud_compute
+seed_examples:
+ - question: What's Multicluster Global Hub?
+   answer: |
+     It aims to manage large-scale cluster fleets based on ACM. It distributes/collects workloads to/from clusters.
+ - question: What components make up the multicluster global hub?
+   answer: |
+     It includes the operator, manager, observability(grafana), and agent. And also kafka and postgres.
+ - question: What's the role of the global hub kafka?
+   answer: |
+     The kafka as the transport to transfer event between global hub(manager) and managed hubs(agents).
+ - question: What's the role of the global hub postgres?
+   answer: |
+     Global hub manager use it as the storage for resources from the global hub or reported by the agent.
+ - question: What's the managed hub cluster?
+   answer: |
+     The managed hub cluster is also an ACM hub cluster, and it also a managed cluster for the global hub.
+ - question: What's the ACM(Advanced Cluster Management)?
+   answer: |
+     Its a Red Hat project focused on multicluster/multicloud scenarios for Kubernetes. Hub is the control plane.
+ - question: What is the role of the global hub operator?
+   answer: |
+     The operator is used to deploy global hub manager/grafana in hub cluster, and agent in managed hub cluster.
+ - question: What's the roles of global hub agent?
+   answer: |
+     To deploy resources to managed hub clusters by kafka, and report the resources/status to the manager by kafka.
+ - question: What's the roles of global hub manager?
+   answer: |
+     To persist the data from global hub(customer) or reported from agent by the transport.
+document:
+ repo: git@github.com:stolostron/multicluster-global-hub.git
+ commit: 6dd284a917984a7d3b704ef83d499e3eceea397b
+ patterns:
+  - README.md
+  - doc/README.md
+  - doc/message.md
+  - doc/global_hub_transport.md
+  - doc/byo.md
+  - doc/events-api.md
